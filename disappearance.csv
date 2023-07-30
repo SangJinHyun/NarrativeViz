@@ -1,3 +1,17 @@
+
+Country,Value
+United States,12394
+Russia,6148
+Germany (FRG),1653
+France,2162
+United Kingdom,1214
+China,1131
+Spain,814
+Netherlands,1167
+Italy,660
+Israel,1263
+
+
 disappearance,2000,2010
 USA,18745.56372,21783.45792
 Germany,8769.880653,9291.958859
@@ -9,3 +23,4 @@ United Kingdom,2342.282593,3134.144304
 Poland,2045.587692,2155.712018
 Netherlands,1859.77168,1347.082288
 Sweden,1173.089486,1221.449083
+
