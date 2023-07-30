@@ -36,7 +36,7 @@ var svg = d3.select("#coffee_viz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/SangJinHyun/NarrativeViz.github.io/main/disappearance.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/SangJinHyun/NarrativeViz.github.io/main/re-exports.csv", function(data) {
 
 // X axis
 var x = d3.scaleBand()
@@ -75,7 +75,7 @@ svg.selectAll("mybar")
 const annotations = [
   {
     note: {
-      label: "United States disappearance well beyond the average of the graph - above 18000",
+      label: "Export focus on Germany as the largest provider by far; compared to the other graphs, the United States isn't a leader here.",
       title: "Graph Year: 2010",
       align: "middle",  // try right or left
       wrap: 200,  // try something smaller to see text split in several lines
