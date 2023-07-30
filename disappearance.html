@@ -1,0 +1,101 @@
+<!-- Referenced d3 from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="coffee_viz"></div>
+<svg width="460" height="400" id="example2"></svg>
+
+<table>
+  <h1>Disappearance of coffee by top countries</h1>
+</table>
+
+<!-- Add 2 buttons -->
+<button onclick="update('disapperance')">Disappearance</button>
+<button onclick="update('imports')">Imports</button>
+<button onclick="update('exports')">Exports</button>
+
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#coffee_viz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/SangJinHyun/NarrativeViz.github.io/main/disappearance.csv", function(data) {
+
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(function(d) { return d.Country; }))
+  
+  .padding(0.2);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+// Bars
+svg.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.Country); })
+    .attr("y", function(d) { return y(d.Value); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Value); })
+    .attr("fill", "#69b3a2")
+
+})
+
+// Features of the annotation
+const annotations = [
+  {
+    note: {
+      label: "United States disappearance well beyond the average of the graph - above 18000",
+      title: "Graph Year: 2010",
+      align: "middle",  // try right or left
+      wrap: 200,  // try something smaller to see text split in several lines
+      padding: 10   // More = text lower
+    },
+    color: ["#69b3a2"],
+    x: 50,
+    y: 0,
+    dy: 100,
+    dx: 100
+  }
+]
+
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("#example2")
+  .append("g")
+  .call(makeAnnotations)
+
+
+</script>
