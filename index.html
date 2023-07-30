@@ -1,4 +1,4 @@
-<!-- Code from d3-graph-gallery.com -->
+<!-- Reference: d3-->
 <!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -10,18 +10,18 @@
 <button onclick="update('var2')">Variable 2</button>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<div id="coffee_viz"></div>
 
 
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin = {top: 45, right: 45, bottom: 75, left: 75},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
+var svg = d3.select("#coffee_viz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -47,7 +47,7 @@ var yAxis = svg.append("g")
 function update(selectedVar) {
 
   // Parse the Data
-  d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
+  d3.csv("https://raw.githubusercontent.com/SangJinHyun/NarrativeViz.github.io/main/disappearance.csv", function(data) {
 
     // X axis
     x.domain(data.map(function(d) { return d.group; }))
