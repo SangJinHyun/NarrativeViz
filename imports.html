@@ -36,7 +36,7 @@ var svg = d3.select("#coffee_viz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/SangJinHyun/NarrativeViz.github.io/main/disappearance.csv", function(data) {
+d3.csv("imports.csv", function(data) {
 
 // X axis
 var x = d3.scaleBand()
